@@ -1,7 +1,6 @@
-import Exception from '../../../../helpers/exception';
-import { Reply, ReplyDoc } from '../model/reply';
+import {Reply} from '../model/reply';
 
-type ReplyDto = {
+interface ReplyDto{
     intent: string;
     body: string;
     minimumConfidence: number;
@@ -31,7 +30,15 @@ class ReplyService {
     }
 
     async create(data: ReplyDto) {
-        return Reply.create({data})
+        return await Reply.create({...data})
+    }
+
+    async findBy(intent :string, confidenceScore : number){
+        return Reply.findOne(
+            {
+                intent: intent,
+                minimumConfidence: {$gt: confidenceScore},
+            });
     }
 }
 
