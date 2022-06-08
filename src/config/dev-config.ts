@@ -6,6 +6,8 @@ export default {
   port: process.env.PORT || 3001,
   environment: process.env.NODE_ENV || 'development',
   opt: process.env.OPT || './opt/logs',
+  ultimateAiUrl: "https://api-dbank.free.beeceptor.com/utimate/intents",
+  ultimateAiAuthorization:  "headerAi",
 
   database: {
     url: process.env.DATABASE_URL,
@@ -13,7 +15,4 @@ export default {
     host: process.env.DATABASE_HOST || 'host.docker.internal',
   },
 
-  development: process.env.NODE_ENV === 'development',
-  production: process.env.NODE_ENV === 'production',
-  test: process.env.NODE_ENV === 'test',
 };
