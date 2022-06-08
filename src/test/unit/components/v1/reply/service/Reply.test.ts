@@ -1,5 +1,5 @@
 import {Reply} from "../../../../../../components/v1/reply/model/reply";
-import ReplyService from "../../../../../../components/v1/reply/service/Reply"
+import ReplyService from "../../../../../../components/v1/reply/service/reply"
 describe('Unit Reply Service', () => {
     it('should call create', () => {
         Reply.create = jest.fn().mockReturnValue({

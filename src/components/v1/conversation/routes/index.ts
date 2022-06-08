@@ -1,6 +1,6 @@
 import { Router } from 'express';
 // import { isAuthenticated } from '../../../../middleware/auth';
-import TodoController from '../controller/chat';
+import ConversationController from '../controller/index';
 import {conversationValidator} from "../validations/Intent";
 // import { todoValidator } from '../validators/todo';
 
@@ -8,12 +8,5 @@ export const todosRouter = Router();
 
 todosRouter
     .route('/conversation')
-    .get(conversationValidator,TodoController.testAnyController)
-    .post(conversationValidator,TodoController.testAnyController)
-//     .post(isAuthenticated, todoValidator, TodoController.createTodo);
-//
-// todosRouter
-//     .route('/todos/:id')
-//     .get(isAuthenticated, TodoController.getSingleTodo)
-//     .patch(isAuthenticated, TodoController.updateTodo)
-//     .delete(isAuthenticated, TodoController.deleteTodo);
+    .get(conversationValidator,ConversationController.testEndpoint)
+    .post(conversationValidator,ConversationController.chat)

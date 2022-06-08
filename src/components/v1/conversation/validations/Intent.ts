@@ -1,7 +1,7 @@
 import { NextFunction as Next, Request, Response } from 'express';
 import * as Yup from 'yup';
 import Exception from '../../../../helpers/exception';
-import IntentSchema from "../validation-schemas";
+import ConversationSchema from "../validation-schemas";
 
 /**
  * Validates the registration request
@@ -18,12 +18,11 @@ export const conversationValidator = async (req: Request, res: Response, next: N
     const { name, email, password } = req.body;
 
     try {
-        await IntentSchema.validate({
+        await ConversationSchema.validate({
             name,
             email,
             password,
         });
-
         return next();
     } catch (error:any) {
         next(new Exception(error.message, 422));

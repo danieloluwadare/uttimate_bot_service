@@ -1,6 +1,7 @@
-import {Intent, IntentDto} from "../model/Intent";
+import {Intent} from "../model/Intent";
 import axios from "axios";
 import config from "../../../../config";
+import {ConversationRequestDto} from "../../generic/conversationRequestDto";
 
 
 export type Intents ={
@@ -9,12 +10,12 @@ export type Intents ={
 }
 
 export class IntentService {
-    static async fetchIntents(intentDto : IntentDto) {
+    static async fetchIntents(requestDto : ConversationRequestDto) {
 
         // 👇️ const data: Intents
         const { data, status } = await axios.post<Intents>(
             config.ultimateAiUrl,
-            {...intentDto},
+            {...requestDto},
             {
                 headers: {
                     Authorization: config.ultimateAiAuthorization,

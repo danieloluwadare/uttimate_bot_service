@@ -33,7 +33,7 @@ class ReplyService {
         return await Reply.create({...data})
     }
 
-    async findBy(intent :string, confidenceScore : number){
+    async findBy(intent :string, confidenceScore : number) {
         return Reply.findOne(
             {
                 intent: intent,
