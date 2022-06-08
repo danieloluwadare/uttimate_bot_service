@@ -24,7 +24,10 @@ describe('Unit Intent Service', () => {
             }
         }
         axios.post = jest.fn().mockReturnValue(axiosResponse)
+
+        // const fn = IntentService.fetchIntents
         const response = await IntentService.fetchIntents({botId:"5552768287",message:"message"})
+        // const response = await fn({botId:"5552768287",message:"message"})
         const  axiosData =(axios.post as jest.Mock).mock.calls[0][1]
         console.log(axiosData)
 

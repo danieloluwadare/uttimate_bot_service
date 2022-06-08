@@ -1,13 +1,15 @@
 import { Router } from 'express';
 // import { isAuthenticated } from '../../../../middleware/auth';
 import TodoController from '../controller/chat';
+import {conversationValidator} from "../validations/Intent";
 // import { todoValidator } from '../validators/todo';
 
 export const todosRouter = Router();
 
 todosRouter
     .route('/conversation')
-    .get(TodoController.testAnyController)
+    .get(conversationValidator,TodoController.testAnyController)
+    .post(conversationValidator,TodoController.testAnyController)
 //     .post(isAuthenticated, todoValidator, TodoController.createTodo);
 //
 // todosRouter
