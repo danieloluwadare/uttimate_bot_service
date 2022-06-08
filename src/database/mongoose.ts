@@ -8,7 +8,10 @@ import logger from '../config/winston';
  */
 const connectDB = async (): Promise<void> => {
   try {
-    await mongoose.connect(`mongodb://${config.database.host}:27017/ultimate`, {
+    // await mongoose.connect(`mongodb://${config.database.host}:27017/ultimate`, {
+    await mongoose.connect(`mongodb://mongoadmin:password@localhost:27017/ultimate`, {
+
+      //mongodb://mongoadmin:password@localhost:27017/ultimate
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false,

@@ -14,4 +14,6 @@ export default {
     testUrl: process.env.TEST_DATABASE_URL,
     host: process.env.DATABASE_HOST || 'host.docker.internal',
   },
+  development: process.env.NODE_ENV === 'development',
+  production: process.env.NODE_ENV === 'production'
 };

@@ -8,5 +8,9 @@ export const todosRouter = Router();
 
 todosRouter
     .route('/conversation')
-    .get(conversationValidator,ConversationController.testEndpoint)
+    .get(ConversationController.testEndpoint)
     .post(conversationValidator,ConversationController.chat)
+
+todosRouter
+    .route('/conversation2')
+    .get(conversationValidator,ConversationController.testEndpoint2)

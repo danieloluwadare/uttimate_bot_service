@@ -15,13 +15,12 @@ import ConversationSchema from "../validation-schemas";
  * @return {Object}
  */
 export const conversationValidator = async (req: Request, res: Response, next: Next): Promise<void> => {
-    const { name, email, password } = req.body;
+    const { message, botId } = req.body;
 
     try {
         await ConversationSchema.validate({
-            name,
-            email,
-            password,
+            message,
+            botId
         });
         return next();
     } catch (error:any) {
