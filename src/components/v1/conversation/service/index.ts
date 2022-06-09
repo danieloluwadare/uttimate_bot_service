@@ -3,6 +3,7 @@ import {IntentService} from "../../intent/service/Intent";
 import Exception from "../../../../helpers/exception";
 import ReplyService from "../../reply/service/reply";
 import {Intent} from "../../intent/model/Intent";
+import logger from "../../../../config/winston";
 
 
 class ConversationService {
@@ -32,6 +33,8 @@ class ConversationService {
         const intent : Intent= await IntentService.fetchIntents(requestDto)
         if(!intent)
             throw new Exception("Intent_not_found", 404)
+
+        logger.info(`Intent found ${intent} ==> ${intent.name} ==> ${intent.confidence}`)
 
         const replyResponse = await ReplyService.findBy(intent.name, intent.confidence)
 

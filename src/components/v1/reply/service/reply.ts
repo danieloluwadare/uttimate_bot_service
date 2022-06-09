@@ -1,6 +1,6 @@
-import {Reply} from '../model/reply';
+import {Reply, ReplyDoc} from '../model/reply';
 
-interface ReplyDto{
+export interface ReplyDto{
     intent: string;
     body: string;
     minimumConfidence: number;
@@ -37,8 +37,31 @@ class ReplyService {
         return Reply.findOne(
             {
                 intent: intent,
-                minimumConfidence: {$gt: confidenceScore},
-            });
+                minimumConfidence: {$lte: confidenceScore},
+            })
+    }
+
+    async findAll(){
+        return Reply.find({})
+    }
+
+    async createAllIfNotExist(data: ReplyDto[]){
+        const replies = await this.findAll()
+        const mapOfIntentToReply = this.getMapOfIntentToReply(replies)
+        const newReplies : ReplyDto[] = []
+        data.forEach(reply=>{
+            if(!mapOfIntentToReply.has(reply.intent))
+                newReplies.push(reply)
+        })
+        if(newReplies.length > 0)
+            await Reply.create(newReplies)
+    }
+
+    private getMapOfIntentToReply(replies : ReplyDoc[]){
+        const map = new Map<string, string>()
+        replies.map(reply=>map.set(reply.intent, reply.body))
+        console.log(map)
+        return map
     }
 }
 

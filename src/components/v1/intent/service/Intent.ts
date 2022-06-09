@@ -2,6 +2,7 @@ import {Intent} from "../model/Intent";
 import axios from "axios";
 import config from "../../../../config";
 import {ConversationRequestDto} from "../../generic/conversationRequestDto";
+import logger from "../../../../config/winston";
 
 
 export type Intents ={
@@ -12,6 +13,7 @@ export type Intents ={
 export class IntentService {
     static async fetchIntents(requestDto : ConversationRequestDto) {
 
+        logger.info(`http call to ${config.ultimateAiUrl}`)
         // 👇️ const data: Intents
         const { data, status } = await axios.post<Intents>(
             config.ultimateAiUrl,

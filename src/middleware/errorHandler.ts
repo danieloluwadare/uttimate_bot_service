@@ -64,7 +64,7 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
             error = handleDuplicateFieldsDB(error);
         if (err.name === 'ValidationError')
             error = handleValidationErrorDB(error);
-        sendErrorProd(error, res);
+        return sendErrorProd(error, res);
     }
 
     logger.error(`None ooooo type of 2: ${err}`);

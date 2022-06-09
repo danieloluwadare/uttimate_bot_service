@@ -4,6 +4,7 @@ import {catchAsync} from "../../../../helpers/catchAsyncError";
 import ConversationService from "../service/index"
 import {ConversationRequestDto} from "../../generic/conversationRequestDto";
 import MyException from "../../../../helpers/myexception";
+import {ReplyDoc} from "../../reply/model/reply";
 
 const ConversationController = {
     testEndpoint : catchAsync(async (req : Request, res: Response) => {
@@ -15,10 +16,10 @@ const ConversationController = {
 
     chat : catchAsync(async (req : Request, res: Response) => {
         const data = req.body as ConversationRequestDto;
-        const reply = await ConversationService.getReply(data)
+        const reply : ReplyDoc = await ConversationService.getReply(data)
         return res.status(201).json({
             status: 'Successful',
-            data: reply,
+            response: reply.body,
         });
     })
 
