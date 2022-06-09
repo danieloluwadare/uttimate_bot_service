@@ -10,9 +10,12 @@ export default {
   ultimateAiAuthorization:  "headerAi",
 
   database: {
+    authSource:'admin',
     url: process.env.DATABASE_URL,
-    testUrl: process.env.TEST_DATABASE_URL,
     host: process.env.DATABASE_HOST || 'host.docker.internal',
+    port:process.env.DATABASE_PORT || '27017',
+    name:process.env.DATABASE_NAME || 'ultimate'
+
   },
   development: process.env.NODE_ENV === 'development',
   production: process.env.NODE_ENV === 'production'
