@@ -1,8 +1,8 @@
-import {Reply} from "../../../../../../components/v1/reply/model/reply";
 import ReplyService from "../../../../../../components/v1/reply/service/reply";
 import ConversationService from "../../../../../../components/v1/conversation/service/conversation"
 import {IntentService} from "../../../../../../components/v1/intent/service/Intent";
 import ExceptionType from "../../../../../../components/v1/generic/exceptionType";
+
 describe('Unit Conversation Service', () => {
     it('expect intent exception if no intent can be found', () => {
         IntentService.fetchIntents = jest.fn().mockReturnValue(undefined)

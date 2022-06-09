@@ -1,13 +1,13 @@
 import cors from 'cors';
-import express, { NextFunction, Request, Response } from 'express';
+import express, {NextFunction, Request, Response} from 'express';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import { v1router } from './components/v1';
+import {v1router} from './components/v1';
 import config from './config';
-import { stream } from './config/winston';
+import {stream} from './config/winston';
 import Exception from './helpers/exception';
-import { errorHandler } from './middleware/errorHandler';
+import {errorHandler} from './middleware/errorHandler';
 
 const app = express();
 

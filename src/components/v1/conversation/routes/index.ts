@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import {Router} from 'express';
 // import { isAuthenticated } from '../../../../middleware/auth';
 import ConversationController from '../controller/index';
 import {conversationValidator} from "../validations";

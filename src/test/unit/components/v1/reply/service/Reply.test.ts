@@ -1,5 +1,6 @@
 import {Reply} from "../../../../../../components/v1/reply/model/reply";
 import ReplyService, {ReplyDto} from "../../../../../../components/v1/reply/service/reply"
+
 describe('Unit Reply Service', () => {
     it('should call create', () => {
         Reply.create = jest.fn().mockReturnValue({

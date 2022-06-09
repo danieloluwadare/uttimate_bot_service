@@ -1,4 +1,4 @@
-import { boolean, date, object, SchemaOf, string } from 'yup';
+import {object, SchemaOf, string} from 'yup';
 import {ConversationRequestDto} from "../../generic/conversationRequestDto";
 
 const ConversationSchema: SchemaOf<ConversationRequestDto> = object().shape({

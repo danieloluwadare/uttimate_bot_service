@@ -1,5 +1,4 @@
-import { NextFunction as Next, Request, Response } from 'express';
-import * as Yup from 'yup';
+import {NextFunction as Next, Request, Response} from 'express';
 import Exception from '../../../../helpers/exception';
 import ConversationSchema from "../validation-schemas";
 

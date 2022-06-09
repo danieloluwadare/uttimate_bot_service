@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import {model, Schema} from 'mongoose';
 
 // An interface that describes the properties that a Reply Document has
 export interface ReplyDoc {

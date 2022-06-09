@@ -1,7 +1,4 @@
 import ReplyService from "../../../../../../components/v1/reply/service/reply";
-import request from 'supertest';
-import app from '../../../../../../app';
-import {Reply} from "../../../../../../components/v1/reply/model/reply";
 
 describe('Reply Service', () => {
     it('should create a reply', async () => {

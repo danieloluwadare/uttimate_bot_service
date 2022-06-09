@@ -1,8 +1,7 @@
 /* eslint-disable require-jsdoc */
-import { NextFunction, Request, Response } from 'express';
+import {NextFunction, Request, Response} from 'express';
 import logger from '../config/winston';
 import Exception from '../helpers/exception';
-
 
 
 const formatError = (err: Exception, res: Response) => {

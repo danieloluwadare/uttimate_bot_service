@@ -1,5 +1,4 @@
-import { Request, Response } from 'express';
-import Exception from "../../../../helpers/exception";
+import {Request, Response} from 'express';
 import {catchAsync} from "../../../../helpers/catchAsyncError";
 import ConversationService from "../service/conversation"
 import {ConversationRequestDto} from "../../generic/conversationRequestDto";
