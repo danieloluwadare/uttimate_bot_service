@@ -8,8 +8,6 @@ export interface ReplyDoc {
   minimumConfidence: number;
 }
 
-//The reply that is related to this intent is only given,
-// if the confidence is above a certain threshold, which was previously configured for that reply
 
 const ReplySchema = new Schema<ReplyDoc>({
   intent: {
