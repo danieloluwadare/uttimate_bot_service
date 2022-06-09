@@ -3,7 +3,6 @@ import { NextFunction, Request, Response } from 'express';
 import config from '../config';
 import logger from '../config/winston';
 import Exception from '../helpers/exception';
-import MyException from "../helpers/myexception";
 
 const handleCastErrorDB = (err: any) => {
     const message = `Invalid ${err.path}: ${err.value}`;
@@ -22,6 +21,13 @@ const handleValidationErrorDB = (err: any) => {
 };
 
 const sendErrorDev = (err: Exception, res: Response) => {
+    // Operational, trusted error
+    if (err.isOperational) {
+        return res.status(err.statusCode).json({
+            status: err.status,
+            message: err.operationalMessage || err.message,
+        });
+    }
     return res.status(err.statusCode).json({
         status: err.status,
         message: err.message,
@@ -34,7 +40,7 @@ const sendErrorProd = (err: Exception, res: Response) => {
     if (err.isOperational) {
         return res.status(err.statusCode).json({
             status: err.status,
-            message: err.message,
+            message: err.operationalMessage || err.message,
         });
     }
     // Programming or other unknown error
@@ -66,8 +72,6 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
             error = handleValidationErrorDB(error);
         return sendErrorProd(error, res);
     }
-
-    logger.error(`None ooooo type of 2: ${err}`);
 
     return sendErrorDev(err, res);
 };

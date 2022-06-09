@@ -1,7 +1,3 @@
-import ReplyService from "../../../../../../components/v1/reply/service/reply";
-import request from 'supertest';
-import app from '../../../../../../app';
-import {Reply} from "../../../../../../components/v1/reply/model/reply";
 import {IntentService} from "../../../../../../components/v1/intent/service/Intent";
 import axios from "axios";
 import config from "../../../../../../config";

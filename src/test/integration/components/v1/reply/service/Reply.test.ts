@@ -30,7 +30,7 @@ describe('Reply Service', () => {
         for (const collection of collections) {
             await ReplyService.create(collection)
         }
-        const reply =await ReplyService.findBy("GoodBye",0.90)
+        const reply =await ReplyService.findByIntentAndConfidenceSore("GoodBye",0.90)
         expect(reply?._id).toBeDefined()
     });
 });

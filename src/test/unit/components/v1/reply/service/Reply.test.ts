@@ -30,7 +30,7 @@ describe('Unit Reply Service', () => {
             minimumConfidence: 0.88,
             __v:0
         })
-        await ReplyService.findBy("string", 0.98)
+        await ReplyService.findByIntentAndConfidenceSore("string", 0.98)
         const res =(Reply.create as jest.Mock).mock.calls[0][0]
         expect(Reply.findOne).toHaveBeenCalled()
     });

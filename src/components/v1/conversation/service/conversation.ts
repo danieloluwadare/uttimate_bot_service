@@ -4,6 +4,7 @@ import Exception from "../../../../helpers/exception";
 import ReplyService from "../../reply/service/reply";
 import {Intent} from "../../intent/model/Intent";
 import logger from "../../../../config/winston";
+import ExceptionType from "../../generic/exceptionType";
 
 
 class ConversationService {
@@ -31,15 +32,18 @@ class ConversationService {
 
     async getReply(requestDto : ConversationRequestDto){
         const intent : Intent= await IntentService.fetchIntents(requestDto)
+        logger.info(`fetched intent ${intent}`)
         if(!intent)
-            throw new Exception("Intent_not_found", 404)
+            throw new Exception(ExceptionType.INTENT_NOT_FOUND.toString(), 400,"AI Unable To Understand Your Input")
 
         logger.info(`Intent found ${intent} ==> ${intent.name} ==> ${intent.confidence}`)
 
-        const replyResponse = await ReplyService.findBy(intent.name, intent.confidence)
+        const replyResponse = await ReplyService.findByIntentAndConfidenceSore(intent.name, intent.confidence)
+
+        logger.info(`replyResponse found ${replyResponse}`)
 
         if(!replyResponse)
-            throw new Exception("reply_not_found", 404)
+            throw new Exception(ExceptionType.REPLY_NOT_FOUND.toString(), 400, "AI Unable To Understand Your Input")
 
         return replyResponse;
 

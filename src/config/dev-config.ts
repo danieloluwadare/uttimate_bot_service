@@ -6,8 +6,8 @@ export default {
   port: process.env.PORT || 3001,
   environment: process.env.NODE_ENV || 'development',
   opt: process.env.OPT || './opt/logs',
-  ultimateAiUrl: "https://api-dbank.free.beeceptor.com/utimate/intents",
-  ultimateAiAuthorization:  "headerAi",
+  ultimateAiUrl: process.env.Ai_URL  || "https://api-dbank.free.beeceptor.com/utimate/intents",
+  ultimateAiAuthorization: process.env.Ai_AUTHORIZATION ||  "headerAi",
 
   database: {
     authSource:'admin',

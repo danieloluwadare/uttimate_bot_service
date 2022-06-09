@@ -33,7 +33,7 @@ class ReplyService {
         return await Reply.create({...data})
     }
 
-    async findBy(intent :string, confidenceScore : number) {
+    async findByIntentAndConfidenceSore(intent :string, confidenceScore : number) {
         return Reply.findOne(
             {
                 intent: intent,
@@ -60,7 +60,6 @@ class ReplyService {
     private getMapOfIntentToReply(replies : ReplyDoc[]){
         const map = new Map<string, string>()
         replies.map(reply=>map.set(reply.intent, reply.body))
-        console.log(map)
         return map
     }
 }
