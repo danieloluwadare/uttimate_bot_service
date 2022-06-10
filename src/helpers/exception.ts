@@ -7,7 +7,7 @@ class Exception extends Error {
     status: string;
 
     isOperational: boolean;
-    operationalMessage ?:string
+    operationalMessage ?: string
 
     /**
      * @param {String} message the error message
@@ -15,12 +15,12 @@ class Exception extends Error {
      * @param operationalMessage
      * @returns {Class} An error class
      */
-    constructor(message: string, statusCode: number, operationalMessage?:string) {
+    constructor(message: string, statusCode: number, operationalMessage?: string) {
         super(message);
         this.statusCode = statusCode;
         this.status = `${statusCode}`.startsWith('4') ? 'Failed' : 'Error';
         this.isOperational = true;
-        this.operationalMessage=operationalMessage
+        this.operationalMessage = operationalMessage
 
         Error.captureStackTrace(this, this.constructor);
     }

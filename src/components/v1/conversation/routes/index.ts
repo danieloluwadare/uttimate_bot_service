@@ -1,11 +1,9 @@
 import {Router} from 'express';
-// import { isAuthenticated } from '../../../../middleware/auth';
 import ConversationController from '../controller/index';
 import {conversationValidator} from "../validations";
-// import { todoValidator } from '../validators/todo';
 
-export const todosRouter = Router();
+export const conversationRouter = Router();
 
-todosRouter
+conversationRouter
     .route('/conversation')
-    .post(conversationValidator,ConversationController.chat)
+    .post(conversationValidator, ConversationController.chat)

@@ -5,26 +5,26 @@ let mongo: any;
 
 //Setup DataBase
 beforeAll(async () => {
-  mongo = await MongoMemoryServer.create();
-  const uri = mongo.getUri();
+    mongo = await MongoMemoryServer.create();
+    const uri = mongo.getUri();
 
-  await mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+    await mongoose.connect(uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
 });
 
 // Reset all data before Each test
 beforeEach(async () => {
-  const collections = await mongoose.connection.db.collections();
+    const collections = await mongoose.connection.db.collections();
 
-  for (const collection of collections) {
-    await collection.deleteMany({});
-  }
+    for (const collection of collections) {
+        await collection.deleteMany({});
+    }
 });
 
 // Close DB connections
 afterAll(async () => {
-  await mongo.stop();
-  await mongoose.connection.close();
+    await mongo.stop();
+    await mongoose.connection.close();
 });

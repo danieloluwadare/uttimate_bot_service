@@ -1,10 +1,10 @@
-import {ConversationRequestDto} from "../../generic/conversationRequestDto";
+import {ConversationRequestDto} from "../../types/conversationRequestDto";
 import {IntentService} from "../../intent/service/Intent";
 import Exception from "../../../../helpers/exception";
 import ReplyService from "../../reply/service/reply";
 import {Intent} from "../../intent/model/Intent";
 import logger from "../../../../config/winston";
-import ExceptionType from "../../generic/exceptionType";
+import ExceptionType from "../../../../helpers/exceptionType";
 
 
 class ConversationService {
@@ -14,7 +14,8 @@ class ConversationService {
      * The Singleton's constructor should always be private to prevent direct
      * construction calls with the `new` operator.
      */
-    private constructor() { }
+    private constructor() {
+    }
 
     /**
      * The static method that controls the access to the singleton instance.
@@ -30,11 +31,11 @@ class ConversationService {
         return ConversationService.instance;
     }
 
-    async getReply(requestDto : ConversationRequestDto){
-        const intent : Intent= await IntentService.fetchIntents(requestDto)
+    async getReply(requestDto: ConversationRequestDto) {
+        const intent: Intent = await IntentService.fetchIntents(requestDto)
         logger.info(`fetched intent ${intent}`)
-        if(!intent)
-            throw new Exception(ExceptionType.INTENT_NOT_FOUND.toString(), 400,"AI Unable To Understand Your Input")
+        if (!intent)
+            throw new Exception(ExceptionType.INTENT_NOT_FOUND, 400, "AI Unable To Understand Your Input")
 
         logger.info(`Intent found ${intent} ==> ${intent.name} ==> ${intent.confidence}`)
 
@@ -42,8 +43,8 @@ class ConversationService {
 
         logger.info(`replyResponse found ${replyResponse}`)
 
-        if(!replyResponse)
-            throw new Exception(ExceptionType.REPLY_NOT_FOUND.toString(), 400, "AI Unable To Understand Your Input")
+        if (!replyResponse)
+            throw new Exception(ExceptionType.REPLY_NOT_FOUND, 400, "AI Unable To Understand Your Input")
 
         return replyResponse;
 

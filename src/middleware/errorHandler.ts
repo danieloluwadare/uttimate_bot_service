@@ -11,8 +11,7 @@ const formatError = (err: Exception, res: Response) => {
             status: err.status,
             message: err.operationalMessage || err.message,
         });
-    }
-    else if(err.statusCode >= 500){
+    } else if (err.statusCode >= 500) {
         // Programming or other unknown error
         return res.status(500).json({
             status: 'error',
@@ -30,9 +29,9 @@ const formatError = (err: Exception, res: Response) => {
 
 export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
 
-    let error = { ...err };
+    let error = {...err};
     error.message = err.message;
-    logger.info({ Error: error });
+    logger.info({Error: error});
 
     err.statusCode = err.statusCode || 500;
     err.status = err.status || 'error';

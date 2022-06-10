@@ -14,7 +14,7 @@ import ConversationSchema from "../validation-schemas";
  * @return {Object}
  */
 export const conversationValidator = async (req: Request, res: Response, next: Next): Promise<void> => {
-    const { message, botId } = req.body;
+    const {message, botId} = req.body;
 
     try {
         await ConversationSchema.validate({
@@ -22,7 +22,7 @@ export const conversationValidator = async (req: Request, res: Response, next: N
             botId
         });
         return next();
-    } catch (error:any) {
+    } catch (error: any) {
         next(new Exception(error.message, 422));
     }
 };

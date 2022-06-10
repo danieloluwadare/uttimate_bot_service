@@ -1,21 +1,21 @@
 import {Intent} from "../model/Intent";
 import axios from "axios";
 import config from "../../../../config";
-import {ConversationRequestDto} from "../../generic/conversationRequestDto";
+import {ConversationRequestDto} from "../../types/conversationRequestDto";
 import logger from "../../../../config/winston";
 
 
-export type Intents ={
-    intents:Intent[]
-    entities:any[]
+export type Intents = {
+    intents: Intent[]
+    entities: any[]
 }
 
 export class IntentService {
-    static async fetchIntents(requestDto : ConversationRequestDto) {
+    static async fetchIntents(requestDto: ConversationRequestDto) {
 
         logger.info(`http call to ${config.ultimateAiUrl}`)
         // 👇️ const data: Intents
-        const { data, status } = await axios.post<Intents>(
+        const {data, status} = await axios.post<Intents>(
             config.ultimateAiUrl,
             {...requestDto},
             {

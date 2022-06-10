@@ -5,7 +5,7 @@ import config from "../../../../../../config";
 describe('Unit Intent Service', () => {
     it('should fetch an intent by botId and message', async () => {
         const axiosResponse = {
-            data:{
+            data: {
                 "intents": [
                     {
                         "confidence": 0.9850270748138428,
@@ -21,10 +21,8 @@ describe('Unit Intent Service', () => {
         }
         axios.post = jest.fn().mockReturnValue(axiosResponse)
 
-        // const fn = IntentService.fetchIntents
-        const response = await IntentService.fetchIntents({botId:"5552768287",message:"message"})
-        // const response = await fn({botId:"5552768287",message:"message"})
-        const  axiosData =(axios.post as jest.Mock).mock.calls[0][1]
+        const response = await IntentService.fetchIntents({botId: "5552768287", message: "message"})
+        const axiosData = (axios.post as jest.Mock).mock.calls[0][1]
         console.log(axiosData)
 
         expect(axios.post).toHaveBeenCalled()
@@ -32,7 +30,7 @@ describe('Unit Intent Service', () => {
         expect(axiosData.botId).toMatch(/5552768287/)
         expect(axiosData.message).toMatch(/message/)
 
-        const  axiosConfig =(axios.post as jest.Mock).mock.calls[0][2]
+        const axiosConfig = (axios.post as jest.Mock).mock.calls[0][2]
         console.log(axiosConfig)
         expect(axiosConfig.headers.Authorization).toEqual(config.ultimateAiAuthorization)
     });

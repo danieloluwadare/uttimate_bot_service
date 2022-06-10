@@ -1,6 +1,6 @@
 import {Reply, ReplyDoc} from '../model/reply';
 
-export interface ReplyDto{
+export interface ReplyDto {
     intent: string;
     body: string;
     minimumConfidence: number;
@@ -13,7 +13,8 @@ class ReplyService {
      * The Singleton's constructor should always be private to prevent direct
      * construction calls with the `new` operator.
      */
-    private constructor() { }
+    private constructor() {
+    }
 
     /**
      * The static method that controls the access to the singleton instance.
@@ -33,7 +34,7 @@ class ReplyService {
         return await Reply.create({...data})
     }
 
-    async findByIntentAndConfidenceSore(intent :string, confidenceScore : number) {
+    async findByIntentAndConfidenceSore(intent: string, confidenceScore: number) {
         return Reply.findOne(
             {
                 intent: intent,
@@ -41,25 +42,25 @@ class ReplyService {
             })
     }
 
-    async findAll(){
+    async findAll() {
         return Reply.find({})
     }
 
-    async createAllIfNotExist(data: ReplyDto[]){
+    async createAllIfNotExist(data: ReplyDto[]) {
         const replies = await this.findAll()
         const mapOfIntentToReply = this.getMapOfIntentToReply(replies)
-        const newReplies : ReplyDto[] = []
-        data.forEach(reply=>{
-            if(!mapOfIntentToReply.has(reply.intent))
+        const newReplies: ReplyDto[] = []
+        data.forEach(reply => {
+            if (!mapOfIntentToReply.has(reply.intent))
                 newReplies.push(reply)
         })
-        if(newReplies.length > 0)
+        if (newReplies.length > 0)
             await Reply.create(newReplies)
     }
 
-    private getMapOfIntentToReply(replies : ReplyDoc[]){
+    private getMapOfIntentToReply(replies: ReplyDoc[]) {
         const map = new Map<string, string>()
-        replies.map(reply=>map.set(reply.intent, reply.body))
+        replies.map(reply => map.set(reply.intent, reply.body))
         return map
     }
 }
