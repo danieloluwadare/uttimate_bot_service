@@ -1,0 +1,25 @@
+version: '3.1'
+services:
+  ultimate_db:
+    image: mongo:latest
+    restart: always
+    ports:
+      - '27017:27017'
+    environment:
+      - MONGO_INITDB_DATABASE=ultimate
+
+  ultimate_bot_service:
+    build:
+      context: .
+    container_name: ${COMPOSE_PROJECT_NAME}
+    environment:
+      - PORT=5000
+      - NODE_ENV=production
+      - DOCKER_DATABASE_URL=mongodb://ultimate_db/ultimate
+      - Ai_URL=https://chat.ultimate.ai/api/intents
+      - Ai_AUTHORIZATION=825765d4-7f8d-4d83-bb03-9d45ac9c27c0
+      - APP_IN_DOCKERIZED_STATE=true
+    ports:
+      - '5000:5000'
+    depends_on:
+      - ultimate_db

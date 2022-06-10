@@ -3,7 +3,7 @@ import logger from "../config/winston";
 
 export class ReplySeederService {
     static async up() {
-        logger.info('ReplyMigrationService Initiating process');
+        logger.info('ReplySeederService Initiating process');
         const replies = [
             {
                 "minimumConfidence": 0.7131562352180481,
@@ -37,7 +37,7 @@ export class ReplySeederService {
             }
         ]
         await ReplyService.createAllIfNotExist(replies)
-        logger.info('ReplyMigrationService Completed');
+        logger.info('ReplySeederService Completed');
 
     }
 

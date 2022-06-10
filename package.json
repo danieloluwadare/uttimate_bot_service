@@ -45,5 +45,12 @@
     "mongodb-memory-server": "^7.3.6",
     "supertest": "^6.1.6",
     "ts-jest": "^27.0.5"
+  },
+  "subsets": {
+    "build": {
+      "exclude": [
+        "mongodb-memory-server"
+      ]
+    }
   }
 }

@@ -1,6 +1,6 @@
 import request from 'supertest';
 import app from '../../../../../../app';
-import {ReplySeederService} from "../../../../../../migrations/reply";
+import {ReplySeederService} from "../../../../../../seeder/reply";
 
 describe('POST v1/conversation', () => {
     const conversationUrl = `/v1/conversation`

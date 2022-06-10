@@ -2,10 +2,10 @@ import app from './app';
 import config from './config';
 import logger from './config/winston';
 import ConnectMongoDB from './database/mongoose';
-import {ReplySeederService} from "./migrations/reply";
+import {ReplySeederService} from "./seeder/reply";
 
 ConnectMongoDB().then(response => {
-    ReplySeederService.up().then(rms => logger.info("completed bootstrapping"))
+    ReplySeederService.up().then(rms => logger.info("ReplySeederService completed"))
 });
 
 app.listen(config.port, () => {

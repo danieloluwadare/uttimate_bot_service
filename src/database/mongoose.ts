@@ -7,8 +7,12 @@ import logger from '../config/winston';
  * @return {void} Null
  */
 const connectDB = async (): Promise<void> => {
+
     try {
-        await mongoose.connect(`mongodb://${config.database.host}:${config.database.port}/${config.database.name}?authSource=${config.database.authSource}`, {
+        const mongoDbUrl = config.app_in_dockerized_state === 'true' ? config.database.docker : config.database.url
+        logger.info(`mongoDbUrl ==>  ${mongoDbUrl}`)
+        logger.info(`config.app_in_dockerized_state ==>${config.app_in_dockerized_state}`)
+        await mongoose.connect(`${mongoDbUrl}`, {
             useNewUrlParser: true,
             useCreateIndex: true,
             useFindAndModify: false,
