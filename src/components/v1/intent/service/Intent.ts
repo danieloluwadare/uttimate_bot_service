@@ -11,7 +11,7 @@ export type Intents = {
 }
 
 export class IntentService {
-    static async fetchIntents(requestDto: ConversationRequestDto) {
+    static async fetchIntent(requestDto: ConversationRequestDto) {
 
         logger.info(`http call to ${config.ultimateAiUrl}`)
         // 👇️ const data: Intents

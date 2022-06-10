@@ -5,7 +5,7 @@ import ExceptionType from "../../../../../../helpers/exceptionType";
 
 describe('Unit Conversation Service', () => {
     it('expect intent exception if no intent can be found', () => {
-        IntentService.fetchIntents = jest.fn().mockReturnValue(undefined)
+        IntentService.fetchIntent = jest.fn().mockReturnValue(undefined)
 
         expect(async () => {
             await ConversationService.getReply({botId: '123', message: 'hello'})
@@ -14,7 +14,7 @@ describe('Unit Conversation Service', () => {
     });
 
     it('expect reply exception if no reply can be found', () => {
-        IntentService.fetchIntents = jest.fn().mockReturnValue(
+        IntentService.fetchIntent = jest.fn().mockReturnValue(
             {
                 name: 'string',
                 confidence: 0.98,

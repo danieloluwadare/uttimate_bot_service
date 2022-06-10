@@ -32,7 +32,7 @@ class ConversationService {
     }
 
     async getReply(requestDto: ConversationRequestDto) {
-        const intent: Intent = await IntentService.fetchIntents(requestDto)
+        const intent: Intent = await IntentService.fetchIntent(requestDto)
         logger.info(`fetched intent ${intent}`)
         if (!intent)
             throw new Exception(ExceptionType.INTENT_NOT_FOUND, 400, "AI Unable To Understand Your Input")
