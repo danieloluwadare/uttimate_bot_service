@@ -1,5 +1,4 @@
 import {Schema} from "mongoose";
-import {ReplyDoc} from "../reply/model/reply";
 
 export interface ConversationRequestDto {
     botId: string

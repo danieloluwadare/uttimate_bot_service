@@ -5,15 +5,15 @@ import {ReplyDoc, ReplySchema} from "../../reply/model/reply";
 
 // An interface that describes the properties that a Reply Document has
 export interface ConversationDoc {
-    request:ConversationRequestDto,
+    request: ConversationRequestDto,
     intent: Intent;
     reply: ReplyDoc;
 }
 
 
 const ConversationSchema = new Schema<ConversationDoc>({
-    request:{
-        type:ConversationRequestDtoSchema
+    request: {
+        type: ConversationRequestDtoSchema
     },
     intent: {
         type: IntentSchema,

@@ -1,5 +1,4 @@
 import {Schema} from "mongoose";
-import {ConversationRequestDto} from "../../types/conversationRequestDto";
 
 export interface Intent {
     name: string;

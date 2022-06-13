@@ -34,12 +34,12 @@ class ConversationService {
 
     async getReply(requestDto: ConversationRequestDto) {
         const conversation = {
-            request:requestDto
+            request: requestDto
         }
 
         const intent: Intent = await IntentService.fetchIntent(requestDto)
         logger.info(`fetched intent ${intent}`)
-        if (!intent){
+        if (!intent) {
             //TODO RAISE AN EVENT FOR INTENT NOT FOUND EXCEPTION
             await Conversation.create(conversation)
             throw new Exception(ExceptionType.INTENT_NOT_FOUND, 400, "AI Unable To Understand Your Input")
@@ -49,14 +49,14 @@ class ConversationService {
         const replyResponse = await ReplyService.findByIntentAndConfidenceSore(intent.name, intent.confidence)
         logger.info(`replyResponse found ${replyResponse}`)
 
-        if (!replyResponse){
+        if (!replyResponse) {
             //TODO RAISE AN EVENT For REPLY NOT FOUND EXCEPTION
             await Conversation.create({...conversation, intent: intent},)
             throw new Exception(ExceptionType.REPLY_NOT_FOUND, 400, "AI Unable To Understand Your Input")
         }
 
         //TODO RAISE AN EVENT FOR SUCCESSFUL CONVERSATION
-        await Conversation.create({...conversation, intent: intent, reply:replyResponse},)
+        await Conversation.create({...conversation, intent: intent, reply: replyResponse},)
         return replyResponse;
 
     }
