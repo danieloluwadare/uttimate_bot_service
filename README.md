@@ -1,7 +1,5 @@
 # uttimate_bot_service
 
-# Solution Overview
-
 ### Technologies Used
 - Nodejs Express Framework
 - Mongodb database
@@ -17,4 +15,4 @@
 - implement event listener for various scenarios in the conversation service
 - get intent that do not have configured reply in the database and configure reply with its minimum confidence score
 - create endpoint to fetch failed response. (for analysis)
-- if external customer service personal are available route the request of a user to them when intent service can't interpret intent
+- if external customer service personal are available, route the request of a user to them when intent service can't interpret intent
