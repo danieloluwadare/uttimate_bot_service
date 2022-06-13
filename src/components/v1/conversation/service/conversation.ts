@@ -5,6 +5,7 @@ import ReplyService from "../../reply/service/reply";
 import {Intent} from "../../intent/model/Intent";
 import logger from "../../../../config/winston";
 import ExceptionType from "../../../../helpers/exceptionType";
+import {Conversation} from "../model/conversation";
 
 
 class ConversationService {
@@ -32,20 +33,30 @@ class ConversationService {
     }
 
     async getReply(requestDto: ConversationRequestDto) {
+        const conversation = {
+            request:requestDto
+        }
+
         const intent: Intent = await IntentService.fetchIntent(requestDto)
         logger.info(`fetched intent ${intent}`)
-        if (!intent)
+        if (!intent){
+            //TODO RAISE AN EVENT FOR INTENT NOT FOUND EXCEPTION
+            await Conversation.create(conversation)
             throw new Exception(ExceptionType.INTENT_NOT_FOUND, 400, "AI Unable To Understand Your Input")
+        }
 
         logger.info(`Intent found ${intent} ==> ${intent.name} ==> ${intent.confidence}`)
-
         const replyResponse = await ReplyService.findByIntentAndConfidenceSore(intent.name, intent.confidence)
-
         logger.info(`replyResponse found ${replyResponse}`)
 
-        if (!replyResponse)
+        if (!replyResponse){
+            //TODO RAISE AN EVENT For REPLY NOT FOUND EXCEPTION
+            await Conversation.create({...conversation, intent: intent},)
             throw new Exception(ExceptionType.REPLY_NOT_FOUND, 400, "AI Unable To Understand Your Input")
+        }
 
+        //TODO RAISE AN EVENT FOR SUCCESSFUL CONVERSATION
+        await Conversation.create({...conversation, intent: intent, reply:replyResponse},)
         return replyResponse;
 
     }

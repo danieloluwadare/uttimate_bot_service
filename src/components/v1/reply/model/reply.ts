@@ -9,7 +9,7 @@ export interface ReplyDoc {
 }
 
 
-const ReplySchema = new Schema<ReplyDoc>({
+export const ReplySchema = new Schema<ReplyDoc>({
     intent: {
         type: String,
         required: true,
