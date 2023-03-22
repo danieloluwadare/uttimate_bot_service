@@ -22,7 +22,6 @@ describe('Unit Reply Service', () => {
 
     });
 
-
     it('should call findOne', async () => {
         Reply.findOne = jest.fn().mockReturnValue({
             intent: "string",
